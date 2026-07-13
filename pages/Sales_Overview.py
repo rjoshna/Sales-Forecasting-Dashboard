@@ -6,7 +6,11 @@ import plotly.express as px
 df = pd.read_csv("train.csv")
 
 # Convert dates
-df["Order Date"] = pd.to_datetime(df["Order Date"], dayfirst=True)
+df["Order Date"] = pd.to_datetime(
+    df["Order Date"],
+    format="mixed",
+    dayfirst=True
+)
 
 # Create Year and Month columns
 df["Year"] = df["Order Date"].dt.year
