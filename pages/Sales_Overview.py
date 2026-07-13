@@ -38,9 +38,10 @@ st.plotly_chart(fig1, use_container_width=True)
 # Monthly Sales Trend
 # -----------------------------
 monthly_sales = (
-    df.groupby(pd.Grouper(key="Order Date", freq="M"))["Sales"]
-    .sum()
-    .reset_index()
+    df.set_index("Order Date")
+      .resample("ME")["Sales"]
+      .sum()
+      .reset_index()
 )
 
 fig2 = px.line(
